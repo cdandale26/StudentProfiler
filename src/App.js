@@ -1,5 +1,5 @@
 import "./App.css";
-import Student from "./components/Student";
+import StudentList from "./components/StudentList";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <Student studentData={studentData} />
+      <StudentList studentData={studentData} />
     </div>
   );
 }

@@ -1,17 +1,13 @@
 import React from "react";
-import "./Student.css";
 import { useState } from "react";
 
 const Student = (props) => {
-  const [searchName, setSearchName] = useState("");
+  const [toggle, setToggle] = useState(false);
 
-  const toggleSwitch = () => {
-    document.querySelector(".getGrades").addEventListener("click", () => {
-      document.querySelector(".vertical").classList.toggle("open");
-      document.querySelector(".line-wrapper").classList.toggle("open");
-      document.querySelector(".content").classList.toggle("open");
-    });
+  const toggler = () => {
+    toggle ? setToggle(false) : setToggle(true);
   };
+  const [tags, setTags] = useState([]);
 
   const findAverage = (marks) => {
     let totalMarks = marks.reduce((acc, mark) => {
@@ -26,70 +22,53 @@ const Student = (props) => {
   };
 
   return (
-    <>
-      <div className="searchName">
-        <input
-          type="text"
-          placeholder="Search by Name"
-          onChange={(event) => {
-            setSearchName(event.target.value);
-          }}
-        ></input>
+    <div key={props.key} className="allInfo">
+      <div className="profileImage">
+        <img src={props.student.pic} alt="" />
       </div>
-
-      {props.studentData
-        .filter((student) => {
-          if (searchName === "") {
-            return student;
-          } else if (
-            student.firstName
-              .toLowerCase()
-              .includes(searchName.toLowerCase()) ||
-            student.lastName.toLowerCase().includes(searchName.toLowerCase())
-          ) {
-            return student;
-          } else {
-            return "";
-          }
-        })
-        .map((student, index) => (
-          <div key={index} className="allInfo">
-            <div className="profileImage">
-              <img src={student.pic} alt="" />
-            </div>
-            <div className="studentInfo">
-              <div>
-                <span>
-                  {capitalizeText(student.firstName)}{" "}
-                  {capitalizeText(student.lastName)}{" "}
-                </span>
-              </div>
-              <div className="sideInfo">
-                <div>Email: {student.email}</div>
-                <div>Company: {student.company}</div>
-                <div>Skill: {student.skill}</div>
-                <div>Average: {findAverage(student.grades)} %</div>
-                <div className="content">
-                  {student.grades.map((grade, idx1) => (
-                    <div>
-                      Test{idx1 + 1} : {"  "}
-                      {grade}%
-                    </div>
-                  ))}
+      <div className="studentInfo">
+        <div>
+          <span>
+            {capitalizeText(props.student.firstName)}{" "}
+            {capitalizeText(props.student.lastName)}{" "}
+          </span>
+        </div>
+        <div className="sideInfo">
+          <div>Email: {props.student.email}</div>
+          <div>Company: {props.student.company}</div>
+          <div>Skill: {props.student.skill}</div>
+          <div>Average: {findAverage(props.student.grades)} %</div>
+          {toggle && (
+            <div>
+              {props.student.grades.map((grade, idx1) => (
+                <div key={idx1}>
+                  Test{idx1 + 1} : {"  "}
+                  {grade}%
                 </div>
-              </div>
+              ))}
             </div>
-            <div className="viewGrades">
-              <button className="getGrades" onClick={() => toggleSwitch()}>
-                <div className="line-wrapper">
-                  <div className="horizontal"></div>
-                  <div className="vertical"></div>
-                </div>
-              </button>
-            </div>
+          )}
+          <div className="searchTag">
+            <input
+              type="text"
+              placeholder="Add your tag"
+              onChange={(event) => {
+                let newTag = event.target.value;
+                setTags(...tags, newTag);
+              }}
+            ></input>
           </div>
-        ))}
-    </>
+        </div>
+      </div>
+      <div className="viewGrades">
+        <button className="getGrades" onClick={toggler}>
+          <div className="line-wrapper">
+            <div className="horizontal"></div>
+            <div className="vertical"></div>
+          </div>
+        </button>
+      </div>
+    </div>
   );
 };
 
