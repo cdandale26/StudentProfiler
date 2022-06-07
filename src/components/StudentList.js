@@ -5,22 +5,26 @@ import { useState } from "react";
 
 const StudentList = (props) => {
   const [searchName, setSearchName] = useState("");
+  const [searchTag, setSearchTag] = useState("");
 
   return (
     <>
-      <div className="searchName">
+      <div className="searchFields">
         <input
           type="text"
-          placeholder="Search by Name"
-          onChange={(event) => {
-            setSearchName(event.target.value);
-          }}
-        ></input>
+          placeholder=" Search by name"
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder=" Search by tag"
+          onChange={(e) => setSearchTag(e.target.value)}
+        />
       </div>
 
       {props.studentData
         .filter((student) => {
-          if (searchName === "") {
+          if (searchName === "" && searchTag === "") {
             return student;
           } else if (
             student.firstName
@@ -28,7 +32,15 @@ const StudentList = (props) => {
               .includes(searchName.toLowerCase()) ||
             student.lastName.toLowerCase().includes(searchName.toLowerCase())
           ) {
-            return student;
+            if (searchTag === "") {
+              return student;
+            } else if (
+              student.addTagsField.filter((tag) =>
+                tag.toLowerCase().includes(searchTag)
+              ).length >= 1
+            ) {
+              return student;
+            }
           } else {
             return "";
           }

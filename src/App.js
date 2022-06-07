@@ -10,7 +10,13 @@ function App() {
     axios
       .get("https://api.hatchways.io/assessment/students")
       .then((response) => {
-        setStudentData(response.data.students);
+        let newData = [];
+        let students = response.data.students;
+        students.map((student) => {
+          student.addTagsField = [];
+          newData.push(student);
+        });
+        setStudentData(newData);
       })
       .catch((error) => console.log(`You encountered an error ${error}`));
   }, []);

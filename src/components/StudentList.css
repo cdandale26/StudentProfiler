@@ -55,26 +55,26 @@ img{
     line-height: 2rem;
 }
 
-.searchName input{
+.searchFields input{
     width:96vw;
     margin:1rem;
-    height:3rem;
+    height:2rem;
     border:none;
     border-bottom: 1px solid lightGray;
     font-family: 'Raleway', sans-serif;
-    font-size: 2rem;
-    padding:0.5rem;
+    font-size: 1.25rem;
+    padding:1rem;
     outline:none
 }
 
 /** BUTTON STYLING **/
 
 .getGrades {
-    height: 60px;
-    width: 60px;
+    height: 4rem;
+    width: 4rem;
     border: none;
     outline: none;
-    padding: 12px;
+    padding: 1rem;
     display: block;
     margin: auto;
     background:none;
@@ -105,20 +105,6 @@ img{
     transform: rotate(180deg);
   }
 
-  .content {
-    margin-top: 20px;
-    height: 0;
-    overflow: hidden;
-    transition: 0.3s ease;
-  }
-  .content-wrapper {
-    padding: 10px;
-  
-  }
-  .content.open {
-    height:auto;
-  }
-
   /** For the tags for each student **/
   .searchTag input{
     width:35%;
@@ -129,4 +115,20 @@ img{
     outline:none;
     padding-bottom:0.5rem;
     border-bottom: 1px solid lightGray;
+  }
+
+  .listedTags {
+    display: inline-block;
+  }
+  
+
+  .tagValue {
+    background-color: lightgray;
+    float:left;
+    margin: .25rem;
+    padding: .25rem; 
+  }
+  
+  li {
+    list-style-type: none;
   }
