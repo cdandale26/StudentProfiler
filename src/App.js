@@ -13,7 +13,7 @@ function App() {
         let newData = [];
         let students = response.data.students;
         students.map((student) => {
-          student.addTagsField = [];
+          student.addedTags = [];
           newData.push(student);
         });
         setStudentData(newData);

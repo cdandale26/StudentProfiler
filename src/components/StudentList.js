@@ -35,7 +35,7 @@ const StudentList = (props) => {
             if (searchTag === "") {
               return student;
             } else if (
-              student.addTagsField.filter((tag) =>
+              student.addedTags.filter((tag) =>
                 tag.toLowerCase().includes(searchTag)
               ).length >= 1
             ) {

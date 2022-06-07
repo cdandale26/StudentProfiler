@@ -8,7 +8,7 @@ const Student = (props) => {
 
   /** Function to add tags for individual Students */
   const addTag = () => {
-    props.student.addTagsField.push(text);
+    props.student.addedTags.push(text);
     setText("");
   };
 
@@ -60,7 +60,7 @@ const Student = (props) => {
           )}
           <div className="listedTags">
             <ul>
-              {props.student.addTagsField.map((tag, index) => (
+              {props.student.addedTags.map((tag, index) => (
                 <li className="tagValue" key={index}>
                   {tag}
                 </li>
@@ -72,7 +72,7 @@ const Student = (props) => {
               className="tagInput"
               type="text"
               placeholder="Add a tag"
-              maxlength="20"
+              maxLength="20"
               onChange={(e) => setText(e.target.value)}
               value={text}
               onKeyPress={(e) => (e.key === "Enter" ? addTag() : "")}
@@ -81,7 +81,7 @@ const Student = (props) => {
         </div>
       </div>
       <div className="viewGrades">
-        <button className="toggleGrades" onClick={() => setToggle(!toggle)}>
+        <button className="toggleGrades" onClick={toggler}>
           {toggle ? "-" : "+"}
         </button>
       </div>
