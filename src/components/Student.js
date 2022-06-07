@@ -67,11 +67,12 @@ const Student = (props) => {
               ))}
             </ul>
           </div>
-          <div className="searchTag">
+          <div className="addTag">
             <input
               className="tagInput"
               type="text"
               placeholder="Add a tag"
+              maxlength="20"
               onChange={(e) => setText(e.target.value)}
               value={text}
               onKeyPress={(e) => (e.key === "Enter" ? addTag() : "")}
@@ -80,11 +81,8 @@ const Student = (props) => {
         </div>
       </div>
       <div className="viewGrades">
-        <button className="getGrades" onClick={toggler}>
-          <div className="line-wrapper">
-            <div className="horizontal"></div>
-            <div className="vertical"></div>
-          </div>
+        <button className="toggleGrades" onClick={() => setToggle(!toggle)}>
+          {toggle ? "-" : "+"}
         </button>
       </div>
     </div>
