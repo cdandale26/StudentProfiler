@@ -24,4 +24,4 @@ the students and filter them based on these new tags.
 
 I have used react hooks and axios for developing the application.
 
-The web application is hosted at :
+### The web application is hosted at :https://studentprofiler.netlify.app/
